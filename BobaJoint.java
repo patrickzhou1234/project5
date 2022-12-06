@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
 public class BobaJoint {
+    /* 
+    Declares and initializes all arrays for flavors (size 1000), toppings (size 12), cost (size 1000). Furthermore, calls for two orders for customers. 
+    @param Default
+    @return Nothing.
+    */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String[] flavors = new String[1000];
@@ -19,6 +24,15 @@ public class BobaJoint {
         flavors = order(flavors, toppings, toppingPrice, flavcst, in);
         in.close();
     }
+    /* 
+    Completes one customer order by calling the menu, pick flavors, pick toppings and adding the flavor and toppings to cost depending on whether or not the flavors array was updated. In addition printing out the final bill. 
+    @param flavors array of flavors
+    @param toppings array of toppings
+    @param toppingPrice array of topping Prices
+    @param flavcst array of flavor costs
+    @param in The scanner passed from main
+    @return New and updated array of flavors after updating the flavors array
+    */
     public static String[] order(String[] flavors, String[] toppings, double[] toppingPrice, double[] flavcst, Scanner in) {
         double cst=0;
         int ind;
