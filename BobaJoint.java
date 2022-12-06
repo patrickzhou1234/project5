@@ -10,7 +10,11 @@ public class BobaJoint {
         for (int i=0;i<originalFlavors.length;i++) {
             flavors[i]=originalFlavors[i];
         }
-        double[] flavcst = {1.45, 2.99, 3.99, 5.99, 4.99, 1.99, 3.00, 4.00, 5.00, 2.00, 1.00, 1.50};
+        double[] originalcst = {1.45, 2.99, 3.99, 5.99, 4.99, 1.99, 3.00, 4.00, 5.00, 2.00, 1.00, 1.50};
+        double[] flavcst = new double[1000];
+        for (int i=0;i<originalcst.length;i++) {
+            flavcst[i]=originalcst[i];
+        }
         flavors = order(flavors, toppings, toppingPrice, flavcst, in);
         flavors = order(flavors, toppings, toppingPrice, flavcst, in);
         in.close();
@@ -28,6 +32,10 @@ public class BobaJoint {
         if (flavors[999]!=null) {
             cst+=flavcst[Integer.parseInt(flavors[999])];
             flavors[999]=null;
+        } else if (flavors[998]!=null) {
+            flavcst[ind-1]=Double.parseDouble(flavors[998]);
+            cst+=Double.parseDouble(flavors[998]);
+            flavors[998]=null;
         }
         toppingsMenu(toppings);
         ind = pickYourToppings(toppings, in);
@@ -82,6 +90,7 @@ public class BobaJoint {
         }
         System.out.println("Sorry, we do not have that.");
         flavors[i] = inp;
+        flavors[998]=Integer.toString((int) (Math.random() * 5 + 1));
         return flavors;
     }
     public static int pickYourToppings(String[] toppings, Scanner in) {
