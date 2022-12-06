@@ -20,6 +20,15 @@ public class BobaJoint {
         int ind;
         menu(flavors);
         flavors = pickYourFlavor(flavors, in);
+        for (ind=0;ind<flavors.length;ind++) {
+            if (flavors[ind]==null) {
+                break;
+            }
+        }
+        try {
+            cst+=flavcst[Integer.parseInt(flavors[999])];
+        } catch(Exception e) {}
+        flavors[999]=null;
         toppingsMenu(toppings);
         ind = pickYourToppings(toppings, in);
         if (ind!=999) {
@@ -67,6 +76,7 @@ public class BobaJoint {
             }
             if (inp.equals(flavors[i])) {
                 System.out.println("Here you go!");
+                flavors[999]=Integer.toString(i);
                 return flavors;
             }
         }
