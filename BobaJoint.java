@@ -25,10 +25,10 @@ public class BobaJoint {
                 break;
             }
         }
-        try {
+        if (flavors[999]!=null) {
             cst+=flavcst[Integer.parseInt(flavors[999])];
-        } catch(Exception e) {}
-        flavors[999]=null;
+            flavors[999]=null;
+        }
         toppingsMenu(toppings);
         ind = pickYourToppings(toppings, in);
         if (ind!=999) {
