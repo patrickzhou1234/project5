@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class BobaJoint {
     /* 
@@ -6,18 +8,24 @@ public class BobaJoint {
     @param Default
     @return Nothing.
     */
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+    public static void main(String[] args) throws FileNotFoundException {
         String[] flavors = new String[1000];
-        String[] originalFlavors = {"Almond Milk Tea", "Coconut Milk Tea", "Coffee Milk Tea", "Honeydew Milk Tea", "House Milk Tea", "Jasmine Green Milk Tea", "Matcha Green Milk Tea", "Original Milk Tea", "Strawberry Milk Tea", "Taro Milk Tea", "Thai Milk Tea", "Vanilla Milk Tea"};
+        System.out.println("Enter the file path: ");
+        Scanner in = new Scanner(System.in);
+        String filepath = in.nextLine();
+        File flavorsFile = new File(filepath);
+        Scanner fileinput = new Scanner(flavorsFile);
+        int i=0;
+        while(fileinput.hasNextLine()) {
+            flavors[i]=fileinput.nextLine();
+            i++;
+        }
+        fileinput.close();
         String[] toppings = {"Boba", "Grass jelly", "Chia or basil seeds", "Popping boba", "Cheese foam", "Egg pudding", "Aloe vera", "Coffee jelly", "Taro", "Red bean", "Fruit jelly or boba", "Aiyu jelly"};
         double[] toppingPrice = {0.45, 0.99, 0.99, 0.50, 0.99, 0.60, 0.80, 0.90, 1.00, 1.00, 0.35, 0.50};
-        for (int i=0;i<originalFlavors.length;i++) {
-            flavors[i]=originalFlavors[i];
-        }
         double[] originalcst = {1.45, 2.99, 3.99, 5.99, 4.99, 1.99, 3.00, 4.00, 5.00, 2.00, 1.00, 1.50};
         double[] flavcst = new double[1000];
-        for (int i=0;i<originalcst.length;i++) {
+        for (i=0;i<originalcst.length;i++) {
             flavcst[i]=originalcst[i];
         }
         flavors = order(flavors, toppings, toppingPrice, flavcst, in);
