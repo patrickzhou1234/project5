@@ -1,19 +1,15 @@
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 public class BobaJoint {
-    /* 
-    Declares and initializes all arrays for flavors (size 1000), toppings (size 12), cost (size 1000). Furthermore, calls for two orders for customers. 
-    @param Default
-    @return Nothing.
-    */
-    public static void main(String[] args) throws FileNotFoundException {
-        String[] flavors = new String[1000];
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        inputFlavors(in, flavors);
+        String[] flavors = new String[1000];
+        String[] originalFlavors = {"Almond Milk Tea", "Coconut Milk Tea", "Coffee Milk Tea", "Honeydew Milk Tea", "House Milk Tea", "Jasmine Green Milk Tea", "Matcha Green Milk Tea", "Original Milk Tea", "Strawberry Milk Tea", "Taro Milk Tea", "Thai Milk Tea", "Vanilla Milk Tea"};
         String[] toppings = {"Boba", "Grass jelly", "Chia or basil seeds", "Popping boba", "Cheese foam", "Egg pudding", "Aloe vera", "Coffee jelly", "Taro", "Red bean", "Fruit jelly or boba", "Aiyu jelly"};
         double[] toppingPrice = {0.45, 0.99, 0.99, 0.50, 0.99, 0.60, 0.80, 0.90, 1.00, 1.00, 0.35, 0.50};
+        for (int i=0;i<originalFlavors.length;i++) {
+            flavors[i]=originalFlavors[i];
+        }
         double[] originalcst = {1.45, 2.99, 3.99, 5.99, 4.99, 1.99, 3.00, 4.00, 5.00, 2.00, 1.00, 1.50};
         double[] flavcst = new double[1000];
         for (int i=0;i<originalcst.length;i++) {
@@ -23,15 +19,6 @@ public class BobaJoint {
         flavors = order(flavors, toppings, toppingPrice, flavcst, in);
         in.close();
     }
-    /* 
-    Completes one customer order by calling the menu, pick flavors, pick toppings and adding the flavor and toppings to cost depending on whether or not the flavors array was updated. In addition printing out the final bill. 
-    @param flavors array of flavors
-    @param toppings array of toppings
-    @param toppingPrice array of topping Prices
-    @param flavcst array of flavor costs
-    @param in The scanner passed from main
-    @return New and updated array of flavors after updating the flavors array
-    */
     public static String[] order(String[] flavors, String[] toppings, double[] toppingPrice, double[] flavcst, Scanner in) {
         double cst=0;
         int ind;
@@ -123,17 +110,5 @@ public class BobaJoint {
         }
         System.out.println("Sorry, we do not have that.");
         return 999;
-    }
-    public static void inputFlavors(Scanner in, String[] flavors) throws FileNotFoundException {
-        System.out.print("Enter the file path: ");
-        String filepath = in.nextLine();
-        File flavorsFile = new File(filepath);
-        Scanner fileinput = new Scanner(flavorsFile);
-        int i=0;
-        while(fileinput.hasNextLine()) {
-            flavors[i]=fileinput.nextLine();
-            i++;
-        }
-        fileinput.close();
     }
 }
