@@ -55,7 +55,7 @@ public class BobaJoint {
         if (ind!=999) {
             cst+=toppingPrice[ind];
         }
-        System.out.println("This has in total cost you: "+cst);
+        System.out.println("This has in total cost you: $"+cst);
         return flavors;
     }
     public static void myBobaWorld(int ct) {
@@ -96,7 +96,7 @@ public class BobaJoint {
                 break;
             }
             if (inp.equals(flavors[i])) {
-                System.out.println("Here you go!");
+                System.out.println("Here you go! A "+flavors[i]+" coming! ");
                 flavors[999]=Integer.toString(i);
                 return flavors;
             }
@@ -125,7 +125,7 @@ public class BobaJoint {
         return 999;
     }
     public static void inputFlavors(Scanner in, String[] flavors) throws FileNotFoundException {
-        System.out.print("Enter the file path: ");
+        System.out.print("Enter the flavors file path: ");
         String filepath = in.nextLine();
         File flavorsFile = new File(filepath);
         Scanner fileinput = new Scanner(flavorsFile);
