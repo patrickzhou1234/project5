@@ -19,8 +19,9 @@ public class BobaJoint {
         for (int i=0;i<originalcst.length;i++) {
             flavcst[i]=originalcst[i];
         }
-        flavors = order(flavors, toppings, toppingPrice, flavcst, in);
-        flavors = order(flavors, toppings, toppingPrice, flavcst, in);
+        order(flavors, toppings, toppingPrice, flavcst, in);
+        order(flavors, toppings, toppingPrice, flavcst, in);
+        order(flavors, toppings, toppingPrice, flavcst, in);
         in.close();
     }
     /* 
@@ -32,23 +33,20 @@ public class BobaJoint {
     @param in The scanner passed from main
     @return New and updated array of flavors after updating the flavors array
     */
-    public static String[] order(String[] flavors, String[] toppings, double[] toppingPrice, double[] flavcst, Scanner in) {
+    public static void order(String[] flavors, String[] toppings, double[] toppingPrice, double[] flavcst, Scanner in) {
         double cst=0;
         int ind;
         menu(flavors);
-        flavors = pickYourFlavor(flavors, in);
-        for (ind=0;ind<flavors.length;ind++) {
-            if (flavors[ind]==null) {
-                break;
+        ind = pickYourFlavor(flavors, in);
+        if (ind==-1) {
+            for (ind=0;ind<flavors.length;ind++) {
+                if (flavors[ind]==null) {
+                    break;
+                }
             }
-        }
-        if (flavors[999]!=null) {
-            cst+=flavcst[Integer.parseInt(flavors[999])];
-            flavors[999]=null;
-        } else if (flavors[998]!=null) {
-            flavcst[ind-1]=Double.parseDouble(flavors[998]);
-            cst+=Double.parseDouble(flavors[998]);
-            flavors[998]=null;
+            flavcst[ind-1]=(int) (Math.random() * 5 + 1);
+        } else {
+            cst+=flavcst[ind];
         }
         toppingsMenu(toppings);
         ind = pickYourToppings(toppings, in);
@@ -56,7 +54,6 @@ public class BobaJoint {
             cst+=toppingPrice[ind];
         }
         System.out.println("This has in total cost you: $"+cst);
-        return flavors;
     }
     public static void myBobaWorld(int ct) {
         System.out.println("Welcome to the world of BOBA! House of "+ct+" high yummy calorie intakes!");
@@ -86,7 +83,7 @@ public class BobaJoint {
             System.out.println(letter+". "+toppings[i]);
         }
     }
-    public static String[] pickYourFlavor(String[] flavors, Scanner in) {
+    public static int pickYourFlavor(String[] flavors, Scanner in) {
         System.out.print("Hello customer! What flavor would you like?");
         String inp;
         inp = in.nextLine();
@@ -97,14 +94,12 @@ public class BobaJoint {
             }
             if (inp.equals(flavors[i])) {
                 System.out.println("Here you go! A "+flavors[i]+" coming! ");
-                flavors[999]=Integer.toString(i);
-                return flavors;
+                return i;
             }
         }
         System.out.println("Sorry, we do not have that.");
         flavors[i] = inp;
-        flavors[998]=Integer.toString((int) (Math.random() * 5 + 1));
-        return flavors;
+        return -1;
     }
     public static int pickYourToppings(String[] toppings, Scanner in) {
         System.out.print("Hello customer! What topping would you like?");
