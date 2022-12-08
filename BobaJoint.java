@@ -10,9 +10,10 @@ public class BobaJoint {
     */
     public static void main(String[] args) throws FileNotFoundException {
         String[] flavors = new String[1000];
+        String[] toppings = new String[12];
         Scanner in = new Scanner(System.in);
         inputFlavors(in, flavors);
-        String[] toppings = {"Boba", "Grass jelly", "Chia or basil seeds", "Popping boba", "Cheese foam", "Egg pudding", "Aloe vera", "Coffee jelly", "Taro", "Red bean", "Fruit jelly or boba", "Aiyu jelly"};
+        inputToppings(in, toppings);
         double[] toppingPrice = {0.45, 0.99, 0.99, 0.50, 0.99, 0.60, 0.80, 0.90, 1.00, 1.00, 0.35, 0.50};
         double[] originalcst = {1.45, 2.99, 3.99, 5.99, 4.99, 1.99, 3.00, 4.00, 5.00, 2.00, 1.00, 1.50};
         double[] flavcst = new double[1000];
@@ -50,7 +51,7 @@ public class BobaJoint {
         }
         toppingsMenu(toppings);
         ind = pickYourToppings(toppings, in);
-        if (ind!=999) {
+        if (ind!=-1) {
             cst+=toppingPrice[ind];
         }
         System.out.println("This has in total cost you: $"+cst);
@@ -108,7 +109,7 @@ public class BobaJoint {
         int i;
         if (inp.equals("none")) {
             System.out.println("Ok, Sure.");
-            return 999;
+            return -1;
         }
         for (i=0;i<toppings.length;i++) {
             if (inp.equals(toppings[i])) {
@@ -117,7 +118,7 @@ public class BobaJoint {
             }
         }
         System.out.println("Sorry, we do not have that.");
-        return 999;
+        return -1;
     }
     public static void inputFlavors(Scanner in, String[] flavors) throws FileNotFoundException {
         System.out.print("Enter the flavors file path: ");
@@ -127,6 +128,18 @@ public class BobaJoint {
         int i=0;
         while(fileinput.hasNextLine()) {
             flavors[i]=fileinput.nextLine();
+            i++;
+        }
+        fileinput.close();
+    }
+    public static void inputToppings(Scanner in, String[] toppings) throws FileNotFoundException {
+        System.out.print("Enter the toppings file path: ");
+        String filepath = in.nextLine();
+        File toppingsFile = new File(filepath);
+        Scanner fileinput = new Scanner(toppingsFile);
+        int i=0;
+        while(fileinput.hasNextLine()) {
+            toppings[i]=fileinput.nextLine();
             i++;
         }
         fileinput.close();
