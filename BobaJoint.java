@@ -94,7 +94,7 @@ public class BobaJoint {
                 break;
             }
             if (inp.equals(flavors[i])) {
-                System.out.println("Here you go! A "+flavors[i]+" coming! ");
+                System.out.println("Here you go! A "+flavors[i]+" coming! Enjoy!");
                 return i;
             }
         }
