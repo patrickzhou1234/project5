@@ -34,7 +34,8 @@ public class BobaJoint {
         // calling input methods
         inputFlavors(in, flavors);
         inputToppings(in, toppings);
-        // calling a order
+        // calling 2 order methods suggesting two customers
+        order(flavors, toppings, toppingPrice, flavcst, in);
         order(flavors, toppings, toppingPrice, flavcst, in);
         // closing scanner for good practice. 
         in.close();
@@ -118,7 +119,7 @@ public class BobaJoint {
     */
     public static int pickYourToppings(String[] toppings, Scanner in, String newtopping) {
         // prints prompt for customer to input topping
-        System.out.print("What topping would you like? If you do not want anymore, say none. ");
+        System.out.print("What topping would you like? If you do not want any more, say none. ");
         // input topping
         String inp;
         inp = in.nextLine();
@@ -253,6 +254,7 @@ public class BobaJoint {
                 System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+itemsPrices[i]);
             }
         }
+        // prints total price and asks user whether or not he/she would like to order again. 
         System.out.println("You total price for this order is: $"+cst);
         System.out.println("Would you like to order again? (yes/no)");
         if ((in.nextLine()).equals("yes")) {
