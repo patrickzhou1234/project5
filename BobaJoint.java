@@ -8,6 +8,7 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.File;
+import java.text.DecimalFormat;
 
 public class BobaJoint {
     /**
@@ -119,7 +120,7 @@ public class BobaJoint {
     */
     public static int pickYourToppings(String[] toppings, Scanner in, String newtopping) {
         // prints prompt for customer to input topping
-        System.out.print("What topping would you like? If you do not want any more, say none. ");
+        System.out.print("What topping would you like? If you do not want any more, type none. ");
         // input topping
         String inp;
         inp = in.nextLine();
@@ -244,6 +245,8 @@ public class BobaJoint {
                 break;
             }
         }
+        // Initialize Decimalformat to format pricing
+        DecimalFormat df = new DecimalFormat("#.00");
         // print the 'bill' for this order.
         System.out.println("Items Purchased: ");
         for (int i=0;i<itemsPurchased.length;i++) {
@@ -251,11 +254,11 @@ public class BobaJoint {
                 break;
             } else {
                 // print bill formatted.
-                System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+itemsPrices[i]);
+                System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+df.format(itemsPrices[i]));
             }
         }
         // prints total price and asks user whether or not he/she would like to order again. 
-        System.out.println("You total price for this order is: $"+cst);
+        System.out.println("You total price for this order is: $"+df.format(cst));
         System.out.println("Would you like to order again? (yes/no)");
         if ((in.nextLine()).equals("yes")) {
             order(flavors, toppings, toppingPrice, flavcst, in);
