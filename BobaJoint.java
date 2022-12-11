@@ -257,7 +257,7 @@ public class BobaJoint {
                 System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+df.format(itemsPrices[i]));
             }
         }
-        // prints total price and asks user whether or not he/she would like to order again. 
+        // prints total price and asks user whether or not he/she/they would like to order again. 
         System.out.println("You total price for this order is: $"+df.format(cst));
         System.out.println("Would you like to order again? (yes/no)");
         if ((in.nextLine()).equals("yes")) {
