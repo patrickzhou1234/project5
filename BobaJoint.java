@@ -2,7 +2,7 @@
   This is a project that simulates a boba joint that takes customer orders for flavors and toppings, then produces a bill at the end. 
  
   @author Patrick Zhou
-  @version 1.2.1
+  @version 2.8.6
   @since 2022-12-8
  */
 import java.io.FileNotFoundException;
