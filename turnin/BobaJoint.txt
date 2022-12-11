@@ -202,12 +202,21 @@ public class BobaJoint {
 
         // declaration and initialization of variables
         double cst=startcst;
-        int ind;
+        int ind, alreadyCt;
         String[] itemsPurchased = new String[1000];
         double[] itemsPrices = new double[1000];
+        // fill in already purchased
+        for (alreadyCt=0;alreadyCt<itemsAlready.length;alreadyCt++) {
+            if (itemsAlready[alreadyCt]==null) {
+                break;
+            } else {
+                itemsPurchased[alreadyCt]=itemsAlready[alreadyCt];
+                itemsPrices[alreadyCt]=pricesAlready[alreadyCt];
+            }
+        }
         // calling menu method to display menu
         menu(flavors);
-        // calling pickYouFlavor method to pick flavor and receive returned index for cost
+        // calling pickYourFlavor method to pick flavor and receive returned index for cost
         ind = pickYourFlavor(flavors, in);
         // check if flavor was found. If found, add cost to total cost. Else, assign random cost for next time and add nothing. 
         if (ind==-1) {
@@ -223,13 +232,13 @@ public class BobaJoint {
             return;
         } else {
             cst+=flavcst[ind];
-            itemsPurchased[0]=flavors[ind];
-            itemsPrices[0]=flavcst[ind];
+            itemsPurchased[alreadyCt]=flavors[ind];
+            itemsPrices[alreadyCt]=flavcst[ind];
         }
         // declaration and initialization of string newtopping in case the user proposes a topping that is not existent yet.
         String newtopping="";
         // declaration and initialization of purchct variable that keeps track of how many items have been purchased.
-        int purchct=1;
+        int purchct=alreadyCt+1;
         // calling toppingsMenu method to display menu and pickYourToppings method to pick topping
         toppingsMenu(toppings);
         while(true) {
@@ -262,15 +271,6 @@ public class BobaJoint {
             DecimalFormat df = new DecimalFormat("#.00");
             // print items purchased label
             System.out.println("Items Purchased: ");
-            // print the 'bill' for the previous order
-            for (int i=0;i<itemsAlready.length;i++) {
-                if (itemsAlready[i]==null) {
-                    break;
-                } else {
-                    // print bill formatted.
-                    System.out.printf("%-22s%s\n", itemsAlready[i], "$"+df.format(pricesAlready[i]));
-                }
-            }
             // print the 'bill' for this order.
             for (int i=0;i<itemsPurchased.length;i++) {
                 if (itemsPurchased[i]==null) {
