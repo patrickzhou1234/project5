@@ -20,6 +20,8 @@ public class BobaJoint {
         String[] flavors = new String[1000];
         String[] toppings = new String[12];
         double[] toppingPrice = new double[12];
+        String[] a=new String[1];
+        double[] b=new double[1];
         // assigning random values for toppings
         for (int i=0;i<toppingPrice.length;i++) {
             toppingPrice[i]=(int) (Math.random() * 5 + 1);
@@ -36,8 +38,8 @@ public class BobaJoint {
         inputFlavors(in, flavors);
         inputToppings(in, toppings);
         // calling 2 order methods suggesting two customers
-        order(flavors, toppings, toppingPrice, flavcst, in);
-        order(flavors, toppings, toppingPrice, flavcst, in);
+        order(flavors, toppings, toppingPrice, flavcst, in, 0.0, a, b);
+        order(flavors, toppings, toppingPrice, flavcst, in, 0.0, a, b);
         // closing scanner for good practice. 
         in.close();
     }
@@ -192,10 +194,14 @@ public class BobaJoint {
     @param toppingPrice array of topping Prices
     @param flavcst array of flavor costs
     @param in The scanner passed from main
+    @param startcst The cost that the order starts with
+    @param itemsAlready array of items already purchased in the previous order.
+    @param pricesAlready array of prices already purchased in previous order.
     */
-    public static void order(String[] flavors, String[] toppings, double[] toppingPrice, double[] flavcst, Scanner in) {
+    public static void order(String[] flavors, String[] toppings, double[] toppingPrice, double[] flavcst, Scanner in, double startcst, String[] itemsAlready, double[] pricesAlready) {
+
         // declaration and initialization of variables
-        double cst=0;
+        double cst=startcst;
         int ind;
         String[] itemsPurchased = new String[1000];
         double[] itemsPrices = new double[1000];
@@ -211,7 +217,9 @@ public class BobaJoint {
                 }
             }
             flavcst[ind-1]=(int) (Math.random() * 5 + 1);
-            order(flavors, toppings, toppingPrice, flavcst, in);
+            String[] a=new String[1];
+            double[] b=new double[1];
+            order(flavors, toppings, toppingPrice, flavcst, in, 0, a, b);
             return;
         } else {
             cst+=flavcst[ind];
@@ -245,25 +253,36 @@ public class BobaJoint {
                 break;
             }
         }
-        // Initialize Decimalformat to format pricing
-        DecimalFormat df = new DecimalFormat("#.00");
-        // print the 'bill' for this order.
-        System.out.println("Items Purchased: ");
-        for (int i=0;i<itemsPurchased.length;i++) {
-            if (itemsPurchased[i]==null) {
-                break;
-            } else {
-                // print bill formatted.
-                System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+df.format(itemsPrices[i]));
-            }
-        }
-        // prints total price and asks user whether or not he/she/they would like to order again. 
-        System.out.println("You total price for this order is: $"+df.format(cst));
-        System.out.println("Would you like to order again? (yes/no)");
+        // asks user whether or not he/she/they would like to order again. 
+        System.out.print("Would you like to order again? (yes/no)");
         if ((in.nextLine()).equals("yes")) {
-            order(flavors, toppings, toppingPrice, flavcst, in);
+            order(flavors, toppings, toppingPrice, flavcst, in, cst, itemsPurchased, itemsPrices);
         } else {
-            System.out.print("Ok, Bye!");
+            // Initialize Decimalformat to format pricing
+            DecimalFormat df = new DecimalFormat("#.00");
+            // print items purchased label
+            System.out.println("Items Purchased: ");
+            // print the 'bill' for the previous order
+            for (int i=0;i<itemsAlready.length;i++) {
+                if (itemsAlready[i]==null) {
+                    break;
+                } else {
+                    // print bill formatted.
+                    System.out.printf("%-22s%s\n", itemsAlready[i], "$"+df.format(pricesAlready[i]));
+                }
+            }
+            // print the 'bill' for this order.
+            for (int i=0;i<itemsPurchased.length;i++) {
+                if (itemsPurchased[i]==null) {
+                    break;
+                } else {
+                    // print bill formatted.
+                    System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+df.format(itemsPrices[i]));
+                }
+            }
+            // prints total price
+            System.out.println("Your total price for this order is: $"+df.format(cst));
+            System.out.println("Bye! See you soon!");
         }
     }
 }
