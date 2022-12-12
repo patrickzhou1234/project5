@@ -84,7 +84,7 @@ public class BobaJoint {
     */
     public static int pickYourFlavor(String[] flavors, Scanner in) {
         // prints prompt
-        System.out.print("Hello customer! What flavor would you like? ");
+        System.out.print("Hello customer! What flavor would you like? (Type in the exact name of the flavor its cAsE sEnSItIvE) ");
         // takes input for flavor
         String inp;
         inp = in.nextLine();
@@ -126,7 +126,7 @@ public class BobaJoint {
     */
     public static int pickYourToppings(String[] toppings, Scanner in, String[] newtopping) {
         // prints prompt for customer to input topping
-        System.out.print("What topping would you like? If you do not want any more, type none. ");
+        System.out.print("What topping would you like? If you do not want any more, type none. (Type in the exact name of the flavor its cAsE sEnSItIvE) ");
         // input topping
         String inp;
         inp = in.nextLine();
