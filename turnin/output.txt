@@ -29,8 +29,6 @@ i. Taro
 j. Red bean
 k. Fruit jelly or boba
 l. Aiyu jelly
-What topping would you like? If you do not want any more, type none. Taro
-Added your topping Taro! Enjoy!
 What topping would you like? If you do not want any more, type none. Boba
 Added your topping Boba! Enjoy!
 What topping would you like? If you do not want any more, type none. none
@@ -50,8 +48,25 @@ i. Strawberry Milk Tea
 j. Taro Milk Tea
 k. Thai Milk Tea
 l. Vanilla Milk Tea
-Hello customer! What flavor would you like? Taro Milk Tea
-Here you go! One Taro Milk Tea coming up!
+Hello customer! What flavor would you like? nmt
+Sorry, we do not have that.
+Welcome to the world of BOBA! House of 13 high yummy calorie intakes!
+Here are your choices:
+a. Almond Milk Tea
+b. Coconut Milk Tea
+c. Coffee Milk Tea
+d. Honeydew Milk Tea
+e. House Milk Tea
+f. Jasmine Green Milk Tea
+g. Matcha Green Milk Tea
+h. Original Milk Tea
+i. Strawberry Milk Tea
+j. Taro Milk Tea
+k. Thai Milk Tea
+l. Vanilla Milk Tea
+m. nmt
+Hello customer! What flavor would you like? nmt
+Here you go! One nmt coming up!
 Here are your toppings choices:
 a. Boba
 b. Grass jelly
@@ -67,21 +82,58 @@ k. Fruit jelly or boba
 l. Aiyu jelly
 What topping would you like? If you do not want any more, type none. Taro
 Added your topping Taro! Enjoy!
-What topping would you like? If you do not want any more, type none. Red bean
-Added your topping Red bean! Enjoy!
+What topping would you like? If you do not want any more, type none. Aiyu jelly
+Added your topping Aiyu jelly! Enjoy!
+What topping would you like? If you do not want any more, type none. New Topping
+Sorry, we do not have that.
+Would you like to order again? (yes/no)yes
+Welcome to the world of BOBA! House of 13 high yummy calorie intakes!
+Here are your choices:
+a. Almond Milk Tea
+b. Coconut Milk Tea
+c. Coffee Milk Tea
+d. Honeydew Milk Tea
+e. House Milk Tea
+f. Jasmine Green Milk Tea
+g. Matcha Green Milk Tea
+h. Original Milk Tea
+i. Strawberry Milk Tea
+j. Taro Milk Tea
+k. Thai Milk Tea
+l. Vanilla Milk Tea
+m. nmt
+Hello customer! What flavor would you like? Coffee Milk Tea
+Here you go! One Coffee Milk Tea coming up!
+Here are your toppings choices:
+a. Boba
+b. Grass jelly
+c. Chia or basil seeds
+d. Popping boba
+e. Cheese foam
+f. Egg pudding
+g. Aloe vera
+h. Coffee jelly
+i. Taro
+j. Red bean
+k. Fruit jelly or boba
+l. Aiyu jelly
+m. New Topping
+What topping would you like? If you do not want any more, type none. New Topping
+Added your topping New Topping! Enjoy!
 What topping would you like? If you do not want any more, type none. none
 Ok, Sure.
 Would you like to order again? (yes/no)no
 Items Purchased:
 Almond Milk Tea       $1.45
+Boba                  $3.00
+nmt                   $4.00
 Taro                  $5.00
-Boba                  $2.00
-Taro Milk Tea         $2.00
-Taro                  $5.00
-Red bean              $5.00
-Your total price for this order is: $20.45
+Aiyu jelly            $5.00
+Coffee Milk Tea       $3.99
+New Topping           $2.00
+Your total price for this order is: $24.44
 Bye! See you soon!
-Welcome to the world of BOBA! House of 12 high yummy calorie intakes!
+Welcome to the world of BOBA! House of 13 high yummy calorie intakes!
 Here are your choices:
 a. Almond Milk Tea
 b. Coconut Milk Tea
@@ -95,8 +147,9 @@ i. Strawberry Milk Tea
 j. Taro Milk Tea
 k. Thai Milk Tea
 l. Vanilla Milk Tea
-Hello customer! What flavor would you like? Coconut Milk Tea
-Here you go! One Coconut Milk Tea coming up!
+m. nmt
+Hello customer! What flavor would you like? Almond Milk Tea
+Here you go! One Almond Milk Tea coming up!
 Here are your toppings choices:
 a. Boba
 b. Grass jelly
@@ -110,61 +163,14 @@ i. Taro
 j. Red bean
 k. Fruit jelly or boba
 l. Aiyu jelly
-What topping would you like? If you do not want any more, type none. Aloe vera
-Added your topping Aloe vera! Enjoy!
-What topping would you like? If you do not want any more, type none. Taro
-Added your topping Taro! Enjoy!
-What topping would you like? If you do not want any more, type none. Boba
-Added your topping Boba! Enjoy!
-What topping would you like? If you do not want any more, type none. none
-Ok, Sure.
-Would you like to order again? (yes/no)yes
-Welcome to the world of BOBA! House of 12 high yummy calorie intakes!
-Here are your choices:
-a. Almond Milk Tea
-b. Coconut Milk Tea
-c. Coffee Milk Tea
-d. Honeydew Milk Tea
-e. House Milk Tea
-f. Jasmine Green Milk Tea
-g. Matcha Green Milk Tea
-h. Original Milk Tea
-i. Strawberry Milk Tea
-j. Taro Milk Tea
-k. Thai Milk Tea
-l. Vanilla Milk Tea
-Hello customer! What flavor would you like? Thai Milk Tea
-Here you go! One Thai Milk Tea coming up!
-Here are your toppings choices:
-a. Boba
-b. Grass jelly
-c. Chia or basil seeds
-d. Popping boba
-e. Cheese foam
-f. Egg pudding
-g. Aloe vera
-h. Coffee jelly
-i. Taro
-j. Red bean
-k. Fruit jelly or boba
-l. Aiyu jelly
-What topping would you like? If you do not want any more, type none. Taro
-Added your topping Taro! Enjoy!
-What topping would you like? If you do not want any more, type none. Red bean
-Added your topping Red bean! Enjoy!
-What topping would you like? If you do not want any more, type none. Boba
-Added your topping Boba! Enjoy!
+m. New Topping
+What topping would you like? If you do not want any more, type none. New Topping
+Added your topping New Topping! Enjoy!
 What topping would you like? If you do not want any more, type none. none
 Ok, Sure.
 Would you like to order again? (yes/no)no
 Items Purchased:
-Coconut Milk Tea      $2.99
-Aloe vera             $4.00
-Taro                  $5.00
-Boba                  $2.00
-Thai Milk Tea         $1.00
-Taro                  $5.00
-Red bean              $5.00
-Boba                  $2.00
-Your total price for this order is: $26.99
+Almond Milk Tea       $1.45
+New Topping           $2.00
+Your total price for this order is: $3.45
 Bye! See you soon!
