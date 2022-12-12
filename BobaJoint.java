@@ -272,7 +272,7 @@ public class BobaJoint {
             order(flavors, toppings, toppingPrice, flavcst, in, cst, itemsPurchased, itemsPrices);
         } else {
             // Initialize Decimalformat to format pricing
-            DecimalFormat df = new DecimalFormat("#.00");
+            DecimalFormat df = new DecimalFormat("0.00");
             // print items purchased label
             System.out.println("Items Purchased: ");
             // print the 'bill' for this order.
@@ -280,10 +280,13 @@ public class BobaJoint {
                 if (itemsPurchased[i]==null) {
                     break;
                 } else {
-                    // print bill formatted.
+                    // print bill items formatted.
                     System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+df.format(itemsPrices[i]));
                 }
             }
+            // prints tax
+            System.out.printf("%-22s%s\n", "+10% Tax", "$"+df.format(cst*0.1));
+            cst*=1.1;
             // prints total price
             System.out.println("Your total price for this order is: $"+df.format(cst));
             // prints farewell message
