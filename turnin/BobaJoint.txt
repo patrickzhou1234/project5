@@ -2,7 +2,7 @@
   This is a project that simulates a boba joint that takes customer orders for flavors and toppings, then produces a bill at the end. 
  
   @author Patrick Zhou
-  @version 2.8.6
+  @version 1.2.1
   @since 2022-12-8
  */
 import java.io.FileNotFoundException;
@@ -12,22 +12,18 @@ import java.text.DecimalFormat;
 
 public class BobaJoint {
     /**
-    Declares and initializes all arrays for flavors (size 1000), toppings (size 12), cost (size 1000) and calls input methods. Furthermore, calls 2 orders simulating 2 customers. 
+    Declares and initializes all arrays for flavors (size 1000), toppings (size 12), cost (size 1000) and calls input methods. Furthermore, calls an order for a customer. 
     @param Default
     */
     public static void main(String[] args) throws FileNotFoundException {
         // Array declarations and initialization
         String[] flavors = new String[1000];
-        String[] toppings = new String[1000];
-        double[] toppingPrice = new double[1000]; 
-        // two filler arrays for ordering
-        String[] a=new String[1];
-        double[] b=new double[1];
+        String[] toppings = new String[12];
+        double[] toppingPrice = new double[12];
         // assigning random values for toppings
-        for (int i=0;i<12;i++) {
+        for (int i=0;i<toppingPrice.length;i++) {
             toppingPrice[i]=(int) (Math.random() * 5 + 1);
         }
-        // hardcode default values for costs array
         double[] originalcst = {1.45, 2.99, 3.99, 5.99, 4.99, 1.99, 3.00, 4.00, 5.00, 2.00, 1.00, 1.50};
         double[] flavcst = new double[1000];
         // filling in default values for flavor costs array
@@ -36,12 +32,12 @@ public class BobaJoint {
         }
         // Scanner declaration and initialization
         Scanner in = new Scanner(System.in);
-        // calling input methods for input
+        // calling input methods
         inputFlavors(in, flavors);
         inputToppings(in, toppings);
         // calling 2 order methods suggesting two customers
-        order(flavors, toppings, toppingPrice, flavcst, in, 0.0, a, b);
-        order(flavors, toppings, toppingPrice, flavcst, in, 0.0, a, b);
+        order(flavors, toppings, toppingPrice, flavcst, in);
+        order(flavors, toppings, toppingPrice, flavcst, in);
         // closing scanner for good practice. 
         in.close();
     }
@@ -84,7 +80,7 @@ public class BobaJoint {
     */
     public static int pickYourFlavor(String[] flavors, Scanner in) {
         // prints prompt
-        System.out.print("Hello customer! What flavor would you like? (Type in the exact name of the flavor its cAsE sEnSItIvE) ");
+        System.out.print("Hello customer! What flavor would you like? ");
         // takes input for flavor
         String inp;
         inp = in.nextLine();
@@ -105,17 +101,15 @@ public class BobaJoint {
         return -1;
     }
     /**
-    Prints the choices for toppings
+    Prints the choices for toppings 
     @param toppings array of toppings
     */
     public static void toppingsMenu(String[] toppings) {
         System.out.println("Here are your toppings choices: ");
         char letter;
         for (int i=0;i<toppings.length;i++) {
-            if (toppings[i]!=null) {
-                letter=(char) ('a'+i);
-                System.out.println(letter+". "+toppings[i]);
-            }
+            letter=(char) ('a'+i);
+            System.out.println(letter+". "+toppings[i]);
         }
     }
     /**
@@ -124,9 +118,9 @@ public class BobaJoint {
     @param in The scanner passed from main
     @return (int) The index of the topping's cost
     */
-    public static int pickYourToppings(String[] toppings, Scanner in, String[] newtopping) {
+    public static int pickYourToppings(String[] toppings, Scanner in, String newtopping) {
         // prints prompt for customer to input topping
-        System.out.print("What topping would you like? If you do not want any more, type none. (Type in the exact name of the flavor its cAsE sEnSItIvE) ");
+        System.out.print("What topping would you like? If you do not want any more, type none. ");
         // input topping
         String inp;
         inp = in.nextLine();
@@ -143,10 +137,10 @@ public class BobaJoint {
                 return i;
             }
         }
-        // If it is not found add it as a new topping. 
-        newtopping[0]=inp;
         // if topping is not found, print sorry message and return -1 instead of topping's cost index
         System.out.println("Sorry, we do not have that.");
+        // If it is not found add it as a new topping. 
+        newtopping=inp;
         return -1;
     }
     /**
@@ -198,30 +192,18 @@ public class BobaJoint {
     @param toppingPrice array of topping Prices
     @param flavcst array of flavor costs
     @param in The scanner passed from main
-    @param startcst The cost that the order starts with
-    @param itemsAlready array of items already purchased in the previous order.
-    @param pricesAlready array of prices already purchased in previous order.
     */
-    public static void order(String[] flavors, String[] toppings, double[] toppingPrice, double[] flavcst, Scanner in, double startcst, String[] itemsAlready, double[] pricesAlready) {
+    public static void order(String[] flavors, String[] toppings, double[] toppingPrice, double[] flavcst, Scanner in) {
         // declaration and initialization of variables
-        double cst=startcst;
-        int ind, alreadyCt;
+        double cst=0;
+        int ind;
         String[] itemsPurchased = new String[1000];
         double[] itemsPrices = new double[1000];
-        // fill in already purchased (purchases from previous orders for the same customer)
-        for (alreadyCt=0;alreadyCt<itemsAlready.length;alreadyCt++) {
-            if (itemsAlready[alreadyCt]==null) {
-                break;
-            } else {
-                itemsPurchased[alreadyCt]=itemsAlready[alreadyCt];
-                itemsPrices[alreadyCt]=pricesAlready[alreadyCt];
-            }
-        }
         // calling menu method to display menu
         menu(flavors);
-        // calling pickYourFlavor method to pick flavor and receive returned index for cost
+        // calling pickYouFlavor method to pick flavor and receive returned index for cost
         ind = pickYourFlavor(flavors, in);
-        // check if flavor was found. If found, add cost to total cost and add to itemspurchased array to keep track of it. Else, assign random cost for next time, add nothing to the cost and run another order. 
+        // check if flavor was found. If found, add cost to total cost. Else, assign random cost for next time and add nothing. 
         if (ind==-1) {
             for (ind=0;ind<flavors.length;ind++) {
                 if (flavors[ind]==null) {
@@ -229,20 +211,19 @@ public class BobaJoint {
                 }
             }
             flavcst[ind-1]=(int) (Math.random() * 5 + 1);
-            order(flavors, toppings, toppingPrice, flavcst, in, cst, itemsPurchased, itemsPrices);
+            order(flavors, toppings, toppingPrice, flavcst, in);
             return;
         } else {
             cst+=flavcst[ind];
-            itemsPurchased[alreadyCt]=flavors[ind];
-            itemsPrices[alreadyCt]=flavcst[ind];
+            itemsPurchased[0]=flavors[ind];
+            itemsPrices[0]=flavcst[ind];
         }
         // declaration and initialization of string newtopping in case the user proposes a topping that is not existent yet.
-        String[] newtopping={""};
+        String newtopping="";
         // declaration and initialization of purchct variable that keeps track of how many items have been purchased.
-        int purchct=alreadyCt+1;
+        int purchct=1;
         // calling toppingsMenu method to display menu and pickYourToppings method to pick topping
         toppingsMenu(toppings);
-        // loop toppings until none is detected
         while(true) {
             ind = pickYourToppings(toppings, in, newtopping);
             // if topping was found, add topping to the total price. 
@@ -251,46 +232,38 @@ public class BobaJoint {
                 itemsPurchased[purchct]=toppings[ind];
                 itemsPrices[purchct]=toppingPrice[ind];
                 purchct++;
-            } else if (newtopping[0].equals("")) {
-                break;
-            } else {
-                // add new toppings if it was not found
+            } else if (!newtopping.equals("")) {
                 int i;
                 for (i=0;i<toppings.length;i++) {
                     if (toppings[i]==null) {
                         break;
                     }
                 }
-                toppings[i]=newtopping[0];
-                toppingPrice[i]=(int) (Math.random() * 5 + 1);
+                toppings[i]=newtopping;
+                break;
+            } else {
                 break;
             }
         }
-        // asks user whether or not he/she/they would like to order again. 
-        System.out.print("Would you like to order again? (yes/no)");
-        if ((in.nextLine()).equals("yes")) {
-            order(flavors, toppings, toppingPrice, flavcst, in, cst, itemsPurchased, itemsPrices);
-        } else {
-            // Initialize Decimalformat to format pricing
-            DecimalFormat df = new DecimalFormat("0.00");
-            // print items purchased label
-            System.out.println("Items Purchased: ");
-            // print the 'bill' for this order.
-            for (int i=0;i<itemsPurchased.length;i++) {
-                if (itemsPurchased[i]==null) {
-                    break;
-                } else {
-                    // print bill items formatted.
-                    System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+df.format(itemsPrices[i]));
-                }
+        // Initialize Decimalformat to format pricing
+        DecimalFormat df = new DecimalFormat("#.00");
+        // print the 'bill' for this order.
+        System.out.println("Items Purchased: ");
+        for (int i=0;i<itemsPurchased.length;i++) {
+            if (itemsPurchased[i]==null) {
+                break;
+            } else {
+                // print bill formatted.
+                System.out.printf("%-22s%s\n", itemsPurchased[i], "$"+df.format(itemsPrices[i]));
             }
-            // prints tax
-            System.out.printf("%-22s%s\n", "+10% Tax", "$"+df.format(cst*0.1));
-            cst*=1.1;
-            // prints total price
-            System.out.println("Your total price for this order is: $"+df.format(cst));
-            // prints farewell message
-            System.out.println("Bye! See you soon!");
+        }
+        // prints total price and asks user whether or not he/she/they would like to order again. 
+        System.out.println("You total price for this order is: $"+df.format(cst));
+        System.out.println("Would you like to order again? (yes/no)");
+        if ((in.nextLine()).equals("yes")) {
+            order(flavors, toppings, toppingPrice, flavcst, in);
+        } else {
+            System.out.print("Ok, Bye!");
         }
     }
 }

@@ -133,6 +133,7 @@ public class BobaJoint {
         // check if the customer wants no topping
         if (inp.equals("none")) {
             System.out.println("Ok, Sure.");
+            newtopping[0]="";
             return -1;
         }
         // interate through the toppings to get topping and return the topping's cost index
@@ -263,7 +264,6 @@ public class BobaJoint {
                 }
                 toppings[i]=newtopping[0];
                 toppingPrice[i]=(int) (Math.random() * 5 + 1);
-                break;
             }
         }
         // asks user whether or not he/she/they would like to order again. 
