@@ -55,8 +55,9 @@ public class BobaJoint {
     /**
     Gets the number of flavors and stores it in the variable 'ct' to call the myBobaWorld method. Then prints the choices for flavors. 
     @param flavors array of flavors
+    @param flavcst array of flavor costs
     */
-    public static void menu(String[] flavors) {
+    public static void menu(String[] flavors, double[] flavcst) {
         // code to count current number of flavors
         int ct=0;
         for (int i=0;i<flavors.length;i++) {
@@ -69,10 +70,12 @@ public class BobaJoint {
         // Prints choices for flavors
         System.out.println("Here are your choices: ");
         char letter;
+        // decimalformat for pricing format
+        DecimalFormat df = new DecimalFormat("0.00");
         for (int i=0;i<flavors.length;i++) {
             if (flavors[i]!=null) {
                 letter=(char) ('a'+i);
-                System.out.println(letter+". "+flavors[i]);
+                System.out.printf("%-35s%s\n", letter+". "+flavors[i], "$"+df.format(flavcst[i]));
             }
         }
     }
@@ -108,13 +111,15 @@ public class BobaJoint {
     Prints the choices for toppings
     @param toppings array of toppings
     */
-    public static void toppingsMenu(String[] toppings) {
+    public static void toppingsMenu(String[] toppings, double[] toppingPrice) {
         System.out.println("Here are your toppings choices: ");
         char letter;
+        // decimalformat for pricing format
+        DecimalFormat df = new DecimalFormat("0.00");
         for (int i=0;i<toppings.length;i++) {
             if (toppings[i]!=null) {
                 letter=(char) ('a'+i);
-                System.out.println(letter+". "+toppings[i]);
+                System.out.printf("%-35s%s\n", letter+". "+toppings[i], "$"+df.format(toppingPrice[i]));
             }
         }
     }
@@ -219,7 +224,7 @@ public class BobaJoint {
             }
         }
         // calling menu method to display menu
-        menu(flavors);
+        menu(flavors, flavcst);
         // calling pickYourFlavor method to pick flavor and receive returned index for cost
         ind = pickYourFlavor(flavors, in);
         // check if flavor was found. If found, add cost to total cost and add to itemspurchased array to keep track of it. Else, assign random cost for next time, add nothing to the cost and run another order. 
@@ -242,7 +247,7 @@ public class BobaJoint {
         // declaration and initialization of purchct variable that keeps track of how many items have been purchased.
         int purchct=alreadyCt+1;
         // calling toppingsMenu method to display menu and pickYourToppings method to pick topping
-        toppingsMenu(toppings);
+        toppingsMenu(toppings, toppingPrice);
         // loop toppings until none is detected
         while(true) {
             ind = pickYourToppings(toppings, in, newtopping);
