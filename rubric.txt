@@ -1,0 +1,24 @@
+Reads input from file	2
+Handles input validation	2 (-1)
+Toppings list price randomly generated	2 (-1 too high)
+Menu presented to user	2
+Multiple orders per customer (-1)
+-	User can order multiple flavors
+-	User can order multiple toppings
+-	Also none	4
+Multiple customers	4 (-1)
+Can handle new flavors	4 (-3)
+Presents final bill:
+-	Name of flavor and cost
+-	Name of toppings and cost
+-	total	5
+Code Organization (-4)
+-	methods (parameters, return values)
+-	avoids code repetition
+-	Reasonable usage of variables and array sizes
+-	Partially filled arrays
+-	Closes scanners	10
+Comments	5
+Output (-2)
+-	provides all scenarios
+-	look and feel (formatting used)	10
